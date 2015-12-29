@@ -28,23 +28,26 @@ class InheritanceTest(TestCase):
             self.assertEqual(saved_value, value)
 
 
-    def test_simple(self):
+    def test_simple_inheritance(self):
         self.make_saving_test(
             SimpleInheritancePlugin,
             primary_key=1,
-            title='A title'
+            title='A title',
+            position=5
         )
 
-    def test_abstract(self):
+    def test_abstract_inheritance(self):
         self.make_saving_test(
             AbstractInheritancePlugin,
-            title='A title'
+            title='A title',
+            position=5
         )
 
     def test_multilevel_inheritance(self):
         self.make_saving_test(
             MultilevelInheritancePlugin,
             title='A title',
+            position=5
         )
 
     def test_copy_relations_called(self):

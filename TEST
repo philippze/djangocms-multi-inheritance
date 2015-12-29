@@ -1,1 +1,1 @@
-cd testapp; python manage.py test
+cd the_right_way; python manage.py test
