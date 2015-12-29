@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             bases=('cms.cmsplugin', models.Model),
         ),
         migrations.CreateModel(
-            name='FKAbstractInheritancePlugin',
+            name='IntermediatePluginClass',
             fields=[
                 ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
                 ('title', models.CharField(max_length=10)),
@@ -31,14 +31,7 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
-            bases=('cms.cmsplugin', models.Model),
-        ),
-        migrations.CreateModel(
-            name='FKModel',
-            fields=[
-                ('primary_key', models.PositiveIntegerField(serialize=False, primary_key=True)),
-                ('title', models.CharField(max_length=10)),
-            ],
+            bases=('cms.cmsplugin',),
         ),
         migrations.CreateModel(
             name='SimpleModel',
@@ -48,15 +41,14 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='FKPlugin',
+            name='MultilevelInheritancePlugin',
             fields=[
-                ('fkmodel_ptr', models.OneToOneField(parent_link=True, auto_created=True, to='project.FKModel')),
-                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('intermediatepluginclass_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='project.IntermediatePluginClass')),
             ],
             options={
                 'abstract': False,
             },
-            bases=('cms.cmsplugin', 'project.fkmodel'),
+            bases=('project.intermediatepluginclass',),
         ),
         migrations.CreateModel(
             name='SimpleInheritancePlugin',
@@ -68,15 +60,5 @@ class Migration(migrations.Migration):
                 'abstract': False,
             },
             bases=('cms.cmsplugin', 'project.simplemodel'),
-        ),
-        migrations.AddField(
-            model_name='fkmodel',
-            name='fk',
-            field=models.ForeignKey(to='cms.CMSPlugin'),
-        ),
-        migrations.AddField(
-            model_name='fkabstractinheritanceplugin',
-            name='fk',
-            field=models.ForeignKey(related_name='abstract_fk_model', to='cms.CMSPlugin'),
         ),
     ]

@@ -5,8 +5,8 @@ from cms.models import CMSPlugin
 from project.models import (
     SimpleInheritancePlugin,
     AbstractInheritancePlugin,
-    FKPlugin,
-    FKAbstractInheritancePlugin,
+    MultilevelInheritancePlugin,
+    DesiredMethodCalled,
 )
 
 
@@ -27,6 +27,7 @@ class InheritanceTest(TestCase):
             saved_value = getattr(saved_obj, key)
             self.assertEqual(saved_value, value)
 
+
     def test_simple(self):
         self.make_saving_test(
             SimpleInheritancePlugin,
@@ -40,19 +41,13 @@ class InheritanceTest(TestCase):
             title='A title'
         )
 
-    def test_fk(self):
-        cmsplugin = CMSPlugin.objects.create()
+    def test_multilevel_inheritance(self):
         self.make_saving_test(
-            FKPlugin,
-            primary_key=5,
+            MultilevelInheritancePlugin,
             title='A title',
-            fk=cmsplugin
         )
 
-    def test_fk_abstract(self):
-        cmsplugin = CMSPlugin.objects.create()
-        self.make_saving_test(
-            FKAbstractInheritancePlugin,
-            title='A title',
-            fk=cmsplugin
-        )
+    def test_copy_relations_called(self):
+        obj = MultilevelInheritancePlugin(title='A title')
+        with self.assertRaises(DesiredMethodCalled):
+            obj.copy_relations('Some argument required')
