@@ -96,8 +96,10 @@ error will occur.
 In 'the_right_way' we define an number of models and Unittests for
 everything stated above.
 
-The models are located in (the_right_way/project/models.py) and the
-tests in (the_right_way/project/tests.py).
+The models are located in
+[the_right_way/project/models.py](the_right_way/project/models.py) and
+the tests in
+[the_right_way/project/tests.py](the_right_way/project/tests.py).
 
 
 ## Install and test
@@ -108,6 +110,6 @@ Simply say
 pip install -r requirements.txt
 ```
 
-Then, the script `SHOW_ERROR` will show what happens if you define
+Then, the script `SHOW_ERROR` will show what happens if you list the
 parent classes in the wrong order. The script `TEST` will perform the
 tests that pass.
