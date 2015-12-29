@@ -1,0 +1,1 @@
+cd the_wrong_way; python manage.py test
