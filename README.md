@@ -8,7 +8,7 @@ to do that.
 ## Overview
 
 
-### CMSPlugin must be first superclass
+### `CMSPlugin` must be first superclass
 
 The `CMSPlugin` class makes a few important changes in comparison to
 the usual django `Model` class, like modifying the `__new__` class method.
@@ -41,7 +41,7 @@ If we do **not** use `abstract = True` in the base class, we will have
 to define some primary key for this class. Otherwise, Django will
 complain about name clashing when creating a primary key.
 
-The parent class has to look like this:
+The parent class should look e.g. like this:
 
 ```
 class SimpleModel(models.Model):
@@ -93,11 +93,11 @@ parent classes is wrong - nothing else.
 When we initialize the test database for 'the_wrong_way', some strange
 error will occur.
 
-In 'the_right_way' we define an number of models in ways described
-above and test their behaviour.
+In 'the_right_way' we define an number of models and Unittests for
+everything stated above.
 
-The models are located in [the_right_way/project/models.py] and the
-tests in [the_right_way/project/tests.py].
+The models are located in (the_right_way/project/models.py) and the
+tests in (the_right_way/project/tests.py).
 
 
 ## Install and test
